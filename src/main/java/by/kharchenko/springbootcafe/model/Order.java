@@ -1,6 +1,10 @@
 package by.kharchenko.springbootcafe.model;
 
 import by.kharchenko.springbootcafe.validator.annotation.CustomFutureOrPresent;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -18,6 +22,10 @@ import static by.kharchenko.springbootcafe.controllers.DbColumn.*;
 
 @Entity
 @Table(name = ORDERS)
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Order extends AbstractEntity implements Serializable, Comparable<Order> {
 
     @Id
@@ -39,7 +47,7 @@ public class Order extends AbstractEntity implements Serializable, Comparable<Or
     private Date dateOfReceiving;
 
     @Column(name = PRICE)
-    private BigDecimal price;
+    private BigDecimal price = new BigDecimal("0");
 
     @Column(name = RECEIVED)
     private boolean received;
@@ -56,74 +64,6 @@ public class Order extends AbstractEntity implements Serializable, Comparable<Or
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = ORDERS_PRODUCTS, joinColumns = @JoinColumn(name = ID_ORDER), inverseJoinColumns = @JoinColumn(name = ID_PRODUCT))
     private Set<Product> products;
-
-    public Order() {
-        price = new BigDecimal("0");
-    }
-
-    public BigInteger getIdOrder() {
-        return idOrder;
-    }
-
-    public void setIdOrder(BigInteger idOrder) {
-        this.idOrder = idOrder;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getDateOfReceiving() {
-        return dateOfReceiving;
-    }
-
-    public void setDateOfReceiving(Date dateOfReceiving) {
-        this.dateOfReceiving = dateOfReceiving;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public boolean isReceived() {
-        return received;
-    }
-
-    public void setReceived(boolean received) {
-        this.received = received;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public PaymentType getPaymentType() {
-        return paymentType;
-    }
-
-    public void setPaymentType(PaymentType paymentType) {
-        this.paymentType = paymentType;
-    }
-
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
 
     @Override
     public int compareTo(Order o) {

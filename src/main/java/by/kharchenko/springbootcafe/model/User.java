@@ -2,6 +2,10 @@ package by.kharchenko.springbootcafe.model;
 
 
 import by.kharchenko.springbootcafe.validator.annotation.Birthday;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -16,6 +20,10 @@ import static by.kharchenko.springbootcafe.controllers.DbColumn.*;
 @Entity
 @Table(name = USERS)
 @Inheritance
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class User extends AbstractEntity implements Serializable {
 
     @Id
@@ -81,119 +89,6 @@ public class User extends AbstractEntity implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = USER)
     private Client client;
-
-    public BigInteger getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(BigInteger idUser) {
-        this.idUser = idUser;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public Date getRegistrationTime() {
-        return registrationTime;
-    }
-
-    public void setRegistrationTime(Date registrationTime) {
-        this.registrationTime = registrationTime;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhotoPath() {
-        return photoPath;
-    }
-
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
-    }
-
-    public String getStringPhoto() {
-        return stringPhoto;
-    }
-
-    public void setStringPhoto(String stringPhoto) {
-        this.stringPhoto = stringPhoto;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public Administrator getAdministrator() {
-        return administrator;
-    }
-
-    public void setAdministrator(Administrator administrator) {
-        this.administrator = administrator;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
 
     @Override
     public boolean equals(Object o) {

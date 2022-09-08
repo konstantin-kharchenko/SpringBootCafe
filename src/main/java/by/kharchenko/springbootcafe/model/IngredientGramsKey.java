@@ -1,6 +1,11 @@
 package by.kharchenko.springbootcafe.model;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
@@ -10,6 +15,10 @@ import java.util.Objects;
 import static by.kharchenko.springbootcafe.controllers.DbColumn.*;
 
 @Embeddable
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class IngredientGramsKey implements Serializable {
 
     @Column(name = ID_PRODUCT)
@@ -17,30 +26,6 @@ public class IngredientGramsKey implements Serializable {
 
     @Column(name = ID_INGREDIENT)
    private BigInteger idIngredient;
-
-    public IngredientGramsKey(BigInteger idProduct, BigInteger idIngredient) {
-        this.idProduct = idProduct;
-        this.idIngredient = idIngredient;
-    }
-
-    public IngredientGramsKey() {
-    }
-
-    public BigInteger getIdProduct() {
-        return idProduct;
-    }
-
-    public void setIdProduct(BigInteger idProduct) {
-        this.idProduct = idProduct;
-    }
-
-    public BigInteger getIdIngredient() {
-        return idIngredient;
-    }
-
-    public void setIdIngredient(BigInteger idIngredient) {
-        this.idIngredient = idIngredient;
-    }
 
     @Override
     public boolean equals(Object o) {

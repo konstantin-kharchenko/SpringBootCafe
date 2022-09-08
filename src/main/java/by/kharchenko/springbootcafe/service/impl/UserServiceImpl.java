@@ -46,13 +46,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public boolean delete(User user) throws ServiceException {
+    public boolean delete(User user) {
         return false;
     }
 
     @Override
     @Transactional
-    public boolean delete(BigInteger id) throws ServiceException {
+    public boolean delete(BigInteger id) {
         return false;
     }
 
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public boolean add(User user) throws ServiceException {
         user.setRegistrationTime(new Date());
-        boolean isLoginExists = userRepository.idByLogin(user.getLogin()).isPresent();
+        boolean isLoginExists = userRepository.findIdByLogin(user.getLogin()).isPresent();
         if (isLoginExists) {
             return false;
         }
@@ -84,10 +84,6 @@ public class UserServiceImpl implements UserService {
                 }
             }
         }
-        /*if (userRepository.save(user).equals(user)) {
-            mailSender.sendCustomEmail(user.getEmail(), APP_MAIL, REGISTRATION_HEAD_MAIL, REGISTRATION_TEXT_MAIL);
-            return true;
-        }*/
         return false;
     }
 
@@ -109,19 +105,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public List<User> findAll() throws ServiceException {
+    public List<User> findAll() {
         return null;
     }
 
     @Override
     @Transactional
-    public boolean update(User user) throws ServiceException {
+    public boolean update(User user) {
         boolean isLoginExists = userRepository.findAnotherIdByLogin(user.getLogin(), user.getIdUser()).isPresent();
         if (isLoginExists) {
             return false;
         }
-        Optional<User> dBOptionalUser= userRepository.findById(user.getIdUser());
-        if (dBOptionalUser.isPresent()){
+        Optional<User> dBOptionalUser = userRepository.findById(user.getIdUser());
+        if (dBOptionalUser.isPresent()) {
             User dBUser = dBOptionalUser.get();
             user.setRegistrationTime(dBUser.getRegistrationTime());
             dBUser.setName(user.getName());
@@ -130,8 +126,7 @@ public class UserServiceImpl implements UserService {
             dBUser.setLogin(user.getLogin());
             userRepository.save(dBUser);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
 
@@ -152,6 +147,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public Optional<BigInteger> idByLogin(String login) {
-        return userRepository.idByLogin(login);
+        return userRepository.findIdByLogin(login);
     }
 }

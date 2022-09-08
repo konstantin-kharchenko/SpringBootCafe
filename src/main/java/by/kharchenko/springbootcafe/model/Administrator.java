@@ -1,5 +1,10 @@
 package by.kharchenko.springbootcafe.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigInteger;
@@ -9,6 +14,10 @@ import static by.kharchenko.springbootcafe.controllers.DbColumn.*;
 
 @Entity
 @Table(name = ADMINISTRATORS)
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Administrator extends AbstractEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,49 +28,12 @@ public class Administrator extends AbstractEntity implements Serializable {
     private double experience;
 
     @OneToOne
-    @MapsId
     @JoinColumn(name = ID_USER, referencedColumnName = ID_USER)
     private User user;
 
     @Enumerated(EnumType.ORDINAL)
     @Column(name = ID_STATUS)
-    private Status status;
-
-    public Administrator() {
-        status = Status.WAITING;
-    }
-
-    public BigInteger getIdAdministrator() {
-        return idAdministrator;
-    }
-
-    public void setIdAdministrator(BigInteger idAdministrator) {
-        this.idAdministrator = idAdministrator;
-    }
-
-    public double getExperience() {
-        return experience;
-    }
-
-    public void setExperience(double experience) {
-        this.experience = experience;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
+    private Status status = Status.WAITING;
 
     @Override
     public boolean equals(Object o) {

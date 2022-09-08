@@ -74,7 +74,7 @@ public class CommonController {
     }
 
     @GetMapping("/language_change")
-    public String ChangeLanguagePage(HttpSession session) {
+    public String changeLanguagePage(HttpSession session) {
         String main = (String) session.getAttribute("main_page");
         if (main.equals(HOME_PAGE)) {
             return "redirect:/home";
@@ -104,7 +104,7 @@ public class CommonController {
                 switch (role) {
                     case CLIENT -> {
                         session.setAttribute("main_page", MAIN_CLIENT_PAGE);
-                        return "redirect:/client/" + id.get().toString();
+                        return "redirect:/client/" + id.get();
                     }
                     case ADMINISTRATOR -> {
                         session.setAttribute("main_page", MAIN_ADMIN_PAGE);
@@ -145,7 +145,6 @@ public class CommonController {
         }
         return null;
     }
-
 
     @ModelAttribute
     public void msg(HttpServletRequest request, Model model) {

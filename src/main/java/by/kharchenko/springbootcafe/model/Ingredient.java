@@ -1,5 +1,10 @@
 package by.kharchenko.springbootcafe.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigInteger;
@@ -12,6 +17,10 @@ import static by.kharchenko.springbootcafe.controllers.DbColumn.*;
 
 @Entity
 @Table(name = INGREDIENTS)
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Ingredient extends AbstractEntity implements Serializable, Comparable<Ingredient> {
 
     @Id
@@ -32,52 +41,14 @@ public class Ingredient extends AbstractEntity implements Serializable, Comparab
     @JoinTable(name = PRODUCTS_INGREDIENTS, joinColumns = @JoinColumn(name = ID_INGREDIENT), inverseJoinColumns = @JoinColumn(name = ID_PRODUCT))
     private Set<Product> products;
 
-
-    public BigInteger getIdIngredient() {
-        return idIngredient;
-    }
-
-    public void setIdIngredient(BigInteger idIngredient) {
-        this.idIngredient = idIngredient;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getShelfLife() {
-        return shelfLife;
-    }
-
-    public void setShelfLife(LocalDate shelfLife) {
-        this.shelfLife = shelfLife;
-    }
-
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
-
     public IngredientGrams getGrams() {
         return grams.stream().toList().get(0);
-    }
-
-    public void setGrams(Set<IngredientGrams> grams) {
-        this.grams = grams;
     }
 
     @Override
     public int compareTo(Ingredient o) {
         return this.shelfLife.compareTo(o.shelfLife);
     }
-
 
     @Override
     public boolean equals(Object o) {

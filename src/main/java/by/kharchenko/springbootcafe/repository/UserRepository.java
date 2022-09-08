@@ -21,7 +21,7 @@ public interface UserRepository extends JpaRepository<User, BigInteger> {
     Optional<Role> findRoleByLogin(String login);
 
     @Query("select u.idUser from User u where u.login = ?1")
-    Optional<BigInteger> idByLogin(String login);
+    Optional<BigInteger> findIdByLogin(String login);
 
     @Modifying
     @Query("update User SET photoPath = ?1 where idUser = ?2")

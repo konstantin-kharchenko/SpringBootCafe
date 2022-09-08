@@ -1,5 +1,9 @@
 package by.kharchenko.springbootcafe.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -14,6 +18,10 @@ import static by.kharchenko.springbootcafe.controllers.DbColumn.*;
 
 @Entity
 @Table(name = PRODUCTS)
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product extends AbstractEntity implements Serializable, Comparable<Product> {
 
     @Id
@@ -51,87 +59,6 @@ public class Product extends AbstractEntity implements Serializable, Comparable<
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = PRODUCTS_INGREDIENTS, joinColumns = @JoinColumn(name = ID_PRODUCT), inverseJoinColumns = @JoinColumn(name = ID_INGREDIENT))
     private Set<Ingredient> ingredients;
-
-
-    public BigInteger getIdProduct() {
-        return idProduct;
-    }
-
-    public void setIdProduct(BigInteger idProduct) {
-        this.idProduct = idProduct;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public String getPhotoPath() {
-        return photoPath;
-    }
-
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
-    }
-
-    public String getStringPhoto() {
-        return stringPhoto;
-    }
-
-    public void setStringPhoto(String stringPhoto) {
-        this.stringPhoto = stringPhoto;
-    }
-
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
-
-    public Set<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(Set<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public Date getValidityDate() {
-        return validityDate;
-    }
-
-    public void setValidityDate(Date validityDate) {
-        this.validityDate = validityDate;
-    }
-
-    public Date getRegistrationTime() {
-        return registrationTime;
-    }
-
-    public void setRegistrationTime(Date registrationTime) {
-        this.registrationTime = registrationTime;
-    }
-
-    public Set<IngredientGrams> getGrams() {
-        return grams;
-    }
-
-    public void setGrams(Set<IngredientGrams> grams) {
-        this.grams = grams;
-    }
 
     @Override
     public int compareTo(Product o) {

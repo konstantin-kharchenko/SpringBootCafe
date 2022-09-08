@@ -1,6 +1,8 @@
 package by.kharchenko.springbootcafe.controllers;
 
+import by.kharchenko.springbootcafe.dto.UserDTO;
 import by.kharchenko.springbootcafe.exception.ServiceException;
+import by.kharchenko.springbootcafe.mapsrtuct.UserMapper;
 import by.kharchenko.springbootcafe.model.Client;
 import by.kharchenko.springbootcafe.model.Order;
 import by.kharchenko.springbootcafe.model.Product;
@@ -35,13 +37,13 @@ import static by.kharchenko.springbootcafe.controllers.RequestAttribute.LAST_PAG
 @Controller
 @RequestMapping("/client")
 public class ClientController {
-    private UserService userService;
-    private ClientService clientService;
-    private OrderService orderService;
-    private ProductService productService;
+    private final UserService userService;
+    private final ClientService clientService;
+    private final OrderService orderService;
+    private final ProductService productService;
 
     @Autowired(required = true)
-    public void setUserService(UserService userService, ClientService clientService, OrderService orderService, ProductService productService) {
+    public ClientController(UserService userService, ClientService clientService, OrderService orderService, ProductService productService) {
         this.userService = userService;
         this.clientService = clientService;
         this.orderService = orderService;
@@ -52,6 +54,8 @@ public class ClientController {
     public String client(@PathVariable("id") BigInteger id, Model model) throws ServletException {
         try {
             User user = userService.findById(id);
+            UserDTO userDTO = UserMapper.INSTANCE.userToUserDto(user);
+            System.out.print(userDTO.getEmail());
             model.addAttribute("user", user);
             List<Order> orderList = orderService.findQuickToReceive(user);
             model.addAttribute("orders", orderList);

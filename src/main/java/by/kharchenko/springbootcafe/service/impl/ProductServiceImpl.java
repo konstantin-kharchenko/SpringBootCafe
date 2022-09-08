@@ -21,13 +21,11 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-    private final IngredientRepository ingredientRepository;
     private final FileReaderWriter readerWriter;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository, IngredientRepository ingredientRepository, FileReaderWriter readerWriter) {
+    public ProductServiceImpl(ProductRepository productRepository, FileReaderWriter readerWriter) {
         this.productRepository = productRepository;
-        this.ingredientRepository = ingredientRepository;
         this.readerWriter = readerWriter;
     }
 
@@ -60,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findAll() throws ServiceException {
+    public List<Product> findAll(){
         return null;
     }
 
@@ -84,7 +82,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public List<Product> findProductsByIdList(List<BigInteger> idList) throws ServiceException {
-
         List<Product> products = productRepository.findProductsByIdList(idList);
         for (Product product : products) {
             product.setStringPhoto(readerWriter.readPhoto(product.getPhotoPath()));
@@ -115,9 +112,6 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public Product findByName(String name) {
         Optional<Product> product = productRepository.findByName(name);
-        if (product.isPresent()) {
-            return product.get();
-        }
-        return null;
+        return product.orElse(null);
     }
 }

@@ -1,5 +1,10 @@
 package by.kharchenko.springbootcafe.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -11,6 +16,10 @@ import static by.kharchenko.springbootcafe.controllers.DbColumn.*;
 
 @Entity
 @Table(name = CLIENTS)
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Client extends AbstractEntity implements Serializable {
 
     @Id
@@ -25,66 +34,13 @@ public class Client extends AbstractEntity implements Serializable {
     private boolean block;
 
     @Column(name = CLIENT_ACCOUNT)
-    private BigDecimal clientAccount;
+    private BigDecimal clientAccount = new BigDecimal("0");
 
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = ID_USER, referencedColumnName = ID_USER)
     protected User user;
     @OneToMany(mappedBy = CLIENT, fetch = FetchType.LAZY)
     private Set<Order> orders;
-
-    public Client() {
-        clientAccount = new BigDecimal("0");
-    }
-
-    public BigInteger getIdClient() {
-        return idClient;
-    }
-
-    public void setIdClient(BigInteger idClient) {
-        this.idClient = idClient;
-    }
-
-    public int getLoyaltyPoints() {
-        return loyaltyPoints;
-    }
-
-    public void setLoyaltyPoints(int loyaltyPoints) {
-        this.loyaltyPoints = loyaltyPoints;
-    }
-
-    public boolean isBlock() {
-        return block;
-    }
-
-    public void setBlock(boolean block) {
-        this.block = block;
-    }
-
-    public BigDecimal getClientAccount() {
-        return clientAccount;
-    }
-
-    public void setClientAccount(BigDecimal clientAccount) {
-        this.clientAccount = clientAccount;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
