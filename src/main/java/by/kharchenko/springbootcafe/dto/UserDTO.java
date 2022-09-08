@@ -64,11 +64,9 @@ public class UserDTO {
     @JsonProperty("role")
     private Role role;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = USER)
     @JsonProperty("administrator")
     private AdministratorDTO administrator;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = USER)
     @JsonProperty("client")
     private ClientDTO client;
 }

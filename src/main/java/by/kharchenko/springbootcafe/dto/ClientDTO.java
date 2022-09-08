@@ -29,9 +29,4 @@ public class ClientDTO {
 
     @JsonProperty("clientAccount")
     private BigDecimal clientAccount = new BigDecimal("0");
-
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = ID_USER, referencedColumnName = ID_USER)
-    @JsonProperty("user")
-    protected UserDTO user;
 }

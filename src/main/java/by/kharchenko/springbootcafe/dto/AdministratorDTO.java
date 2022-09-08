@@ -22,11 +22,6 @@ public class AdministratorDTO {
     @JsonProperty("experience")
     private double experience;
 
-    @OneToOne
-    @JoinColumn(name = ID_USER, referencedColumnName = ID_USER)
-    @JsonProperty("user")
-    private UserDTO user;
-
     @JsonProperty("status")
     private Status status = Status.WAITING;
 }

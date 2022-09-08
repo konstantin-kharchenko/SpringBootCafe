@@ -54,7 +54,7 @@ public class ClientController {
     public String client(@PathVariable("id") BigInteger id, Model model) throws ServletException {
         try {
             User user = userService.findById(id);
-            UserDTO userDTO = UserMapper.INSTANCE.userToUserDto(user);
+            UserDTO userDTO = UserMapper.INSTANCE.userToUserDTO(user);
             System.out.print(userDTO.getEmail());
             model.addAttribute("user", user);
             List<Order> orderList = orderService.findQuickToReceive(user);
