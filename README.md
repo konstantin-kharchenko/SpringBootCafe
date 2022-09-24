@@ -42,7 +42,10 @@ After that, the Entity will return to the service, where some manipulation will 
 ### Applied technologies:
 + Spring Core
 + Spring MVC
-+ Hibernate
++ Spring Data JPA
++ Spring Boot
++ Lombok
++ Mapstruct
 + Mail Sender
 + Thymeleaf
 + MySQL
