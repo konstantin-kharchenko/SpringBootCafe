@@ -58,7 +58,7 @@
                         </div>
                         <br/>
                         <h5 class="card-title" th:text="'Price: '+${product.price}"></h5>
-                        <a th:href="@{/client/delete-from-basket/{id}(id=${product.idProduct})}"
+                        <a th:href="@{/delete-from-basket/{id}(id=${product.idProduct})}"
                            class="btn btn-primary">Delete from Basket</a>
                     </div>
                 </div>

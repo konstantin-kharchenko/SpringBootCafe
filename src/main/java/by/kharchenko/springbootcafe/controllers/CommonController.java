@@ -34,7 +34,6 @@ public class CommonController {
 
     @GetMapping("/sign-in")
     public String goSingInPage() {
-        System.out.println("Sign-in Get");
         return "common/sign-in";
     }
 
@@ -90,7 +89,6 @@ public class CommonController {
 
     @PostMapping("/sign-in")
     public String signIn(HttpServletRequest request) throws ServletException {
-        System.out.println("Sign-in Post");
         HttpSession session = request.getSession();
         String login = request.getParameter("login");
         String password = request.getParameter("password");

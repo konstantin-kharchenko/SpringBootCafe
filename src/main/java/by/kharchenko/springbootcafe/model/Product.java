@@ -80,15 +80,13 @@ public class Product extends AbstractEntity implements Serializable, Comparable<
 
     @Override
     public String toString() {
-        return "Product{" +
-                "idProduct=" + idProduct +
-                ", name='" + name + '\'' +
-                ", validityDate=" + validityDate +
-                ", registrationTime=" + registrationTime +
-                ", price=" + price +
-                ", photoPath='" + photoPath + '\'' +
-                ", grams=" + grams +
-                ", stringPhoto='" + stringPhoto + '\'' +
-                '}';
+        return getClass().getSimpleName() + "(" +
+                "idProduct = " + idProduct + ", " +
+                "name = " + name + ", " +
+                "validityDate = " + validityDate + ", " +
+                "registrationTime = " + registrationTime + ", " +
+                "price = " + price + ", " +
+                "photoPath = " + photoPath + ", " +
+                "stringPhoto = " + stringPhoto + ")";
     }
 }

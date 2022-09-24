@@ -1,8 +1,6 @@
-package by.kharchenko.springbootcafe.dto;
+package by.kharchenko.springbootcafe.model.dto;
 
-import by.kharchenko.springbootcafe.model.Client;
 import by.kharchenko.springbootcafe.model.PaymentType;
-import by.kharchenko.springbootcafe.model.Product;
 import by.kharchenko.springbootcafe.validator.annotation.CustomFutureOrPresent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -42,17 +40,10 @@ public class OrderDTO {
     @JsonProperty("price")
     private BigDecimal price = new BigDecimal("0");
 
-    @ManyToOne
-    @JoinColumn(name = ID_CLIENT)
-    @JsonProperty("client")
-    private ClientDTO client;
-
     @NotNull(message = "Payment type must not be empty")
     @JsonProperty("paymentType")
     private PaymentType paymentType;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = ORDERS_PRODUCTS, joinColumns = @JoinColumn(name = ID_ORDER), inverseJoinColumns = @JoinColumn(name = ID_PRODUCT))
     @JsonProperty("products")
     private Set<ProductDTO> products;
 }

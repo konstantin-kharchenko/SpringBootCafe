@@ -1,4 +1,4 @@
-package by.kharchenko.springbootcafe.dto;
+package by.kharchenko.springbootcafe.model.dto;
 
 import by.kharchenko.springbootcafe.model.Status;
 import by.kharchenko.springbootcafe.model.User;

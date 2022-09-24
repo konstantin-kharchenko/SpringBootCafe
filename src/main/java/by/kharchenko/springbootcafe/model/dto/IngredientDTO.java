@@ -1,7 +1,6 @@
-package by.kharchenko.springbootcafe.dto;
+package by.kharchenko.springbootcafe.model.dto;
 
 import by.kharchenko.springbootcafe.model.IngredientGrams;
-import by.kharchenko.springbootcafe.model.Product;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -27,12 +26,9 @@ public class IngredientDTO {
     @JsonProperty("shelfLife")
     private LocalDate shelfLife;
 
-    @OneToMany(mappedBy = "ingredient")
     @JsonProperty("grams")
     Set<IngredientGrams> grams;
 
-    @ManyToMany
-    @JoinTable(name = PRODUCTS_INGREDIENTS, joinColumns = @JoinColumn(name = ID_INGREDIENT), inverseJoinColumns = @JoinColumn(name = ID_PRODUCT))
     @JsonProperty("products")
     private Set<ProductDTO> products;
 }

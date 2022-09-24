@@ -41,10 +41,6 @@ public class Ingredient extends AbstractEntity implements Serializable, Comparab
     @JoinTable(name = PRODUCTS_INGREDIENTS, joinColumns = @JoinColumn(name = ID_INGREDIENT), inverseJoinColumns = @JoinColumn(name = ID_PRODUCT))
     private Set<Product> products;
 
-    public IngredientGrams getGrams() {
-        return grams.stream().toList().get(0);
-    }
-
     @Override
     public int compareTo(Ingredient o) {
         return this.shelfLife.compareTo(o.shelfLife);

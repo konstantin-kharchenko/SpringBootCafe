@@ -1,4 +1,4 @@
-package by.kharchenko.springbootcafe.dto;
+package by.kharchenko.springbootcafe.model.dto;
 
 import by.kharchenko.springbootcafe.model.Role;
 import by.kharchenko.springbootcafe.validator.annotation.Birthday;
@@ -6,17 +6,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigInteger;
 import java.util.Date;
-
-import static by.kharchenko.springbootcafe.controllers.DbColumn.USER;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class UserDTO {
 
     @JsonProperty("idUser")

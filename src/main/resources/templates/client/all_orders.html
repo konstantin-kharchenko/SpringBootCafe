@@ -73,12 +73,12 @@
                                         <span th:case="'CLIENT_ACCOUNT'">Client Account</span>
                                     </th:block>
                                 </h5>
-                                <a th:href="@{/client/change-order/{id}/{page}(id=${order.idOrder}, page = ${currentPage})}">Change Order</a>
+                                <a th:href="@{/change-order/{id}/{page}(id=${order.idOrder}, page = ${currentPage})}">Change Order</a>
                                 <br/>
-                                <a th:href="@{/client/delete-order-from-all/{id}(id=${order.idOrder})}">Delete
+                                <a th:href="@{/delete-order-from-all/{id}(id=${order.idOrder})}">Delete
                                     Order</a>
                                 <br/>
-                                <a th:href="@{/client/add-from-basket/{id}/{page}(id=${order.idOrder}, page = ${currentPage})}">Add From Basket</a>
+                                <a th:href="@{/add-from-basket/{id}/{page}(id=${order.idOrder}, page = ${currentPage})}">Add From Basket</a>
                             </small>
                         </div>
                         <center>
@@ -99,7 +99,7 @@
                                         <br/>
                                         <h5 class="card-title"
                                             th:text="'Price: '+${product.price}"></h5>
-                                        <a th:href="@{/client/delete-from-order/{idOrder}/{idProduct}/{page}(idOrder=${order.idOrder}, idProduct=${product.idProduct}, page=${currentPage})}"
+                                        <a th:href="@{/delete-from-order/{idOrder}/{idProduct}/{page}(idOrder=${order.idOrder}, idProduct=${product.idProduct}, page=${currentPage})}"
                                            class="btn btn-primary">Delete from Order</a>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                 </div>
             </aside>
         </div>
-        <form action="/client/create-order">
+        <form action="/create-order">
             <button class="w-100 btn btn-lg btn-primary">
                 Create Order
             </button>
@@ -121,7 +121,7 @@
                 <ul class="pagination mt-2">
                     <li th:class="'page-item '+${firstPage ? 'disabled' : ''}">
                         <a class="page-link"
-                           th:href="@{/client/all-orders/{page}(page=${currentPage - 1})}"
+                           th:href="@{/all-orders/{page}(page=${currentPage - 1})}"
                            aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
@@ -129,12 +129,12 @@
                     <div th:each="i: ${#numbers.sequence(1, pageCount)}">
                         <li th:class="'page-item '+${currentPage == i ? 'active': ''}">
                             <a class="page-link"
-                               th:href="@{/client/all-orders/{page}(page=${i})}" th:text="${i}"></a>
+                               th:href="@{/all-orders/{page}(page=${i})}" th:text="${i}"></a>
                         </li>
                     </div>
                     <li th:class="'page-item '+${lastPage ? 'disabled' : ''}">
                         <a class="page-link"
-                           th:href="@{/client/all-orders/{page}(page=${currentPage + 1})}"
+                           th:href="@{/all-orders/{page}(page=${currentPage + 1})}"
                            aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>

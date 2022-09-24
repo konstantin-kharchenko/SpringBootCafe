@@ -1,6 +1,6 @@
-package by.kharchenko.springbootcafe.mapsrtuct;
+package by.kharchenko.springbootcafe.model.mapper;
 
-import by.kharchenko.springbootcafe.dto.UserDTO;
+import by.kharchenko.springbootcafe.model.dto.UserDTO;
 import by.kharchenko.springbootcafe.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

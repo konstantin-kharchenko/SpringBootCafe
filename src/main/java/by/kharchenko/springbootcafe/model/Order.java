@@ -1,10 +1,8 @@
 package by.kharchenko.springbootcafe.model;
 
 import by.kharchenko.springbootcafe.validator.annotation.CustomFutureOrPresent;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.Hibernate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -26,6 +24,7 @@ import static by.kharchenko.springbootcafe.controllers.DbColumn.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Order extends AbstractEntity implements Serializable, Comparable<Order> {
 
     @Id
@@ -37,7 +36,6 @@ public class Order extends AbstractEntity implements Serializable, Comparable<Or
     @NotEmpty(message = "name must not be empty")
     @Pattern(regexp = "^[А-Яа-яA-Za-z0-9-_\\s]{3,}$", message = "Invalid")
     private String name;
-
 
     @Temporal(TemporalType.DATE)
     @Column(name = DATE_OF_RECEIVING)
@@ -73,27 +71,13 @@ public class Order extends AbstractEntity implements Serializable, Comparable<Or
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Order order = (Order) o;
-        return received == order.received && Objects.equals(idOrder, order.idOrder) && Objects.equals(name, order.name) && Objects.equals(dateOfReceiving, order.dateOfReceiving) && Objects.equals(price, order.price)  && Objects.equals(paymentType, order.paymentType);
+        return idOrder != null && Objects.equals(idOrder, order.idOrder);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idOrder, name, dateOfReceiving, price, received, paymentType);
+        return getClass().hashCode();
     }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "idOrder=" + idOrder +
-                ", name='" + name + '\'' +
-                ", dateOfReceiving=" + dateOfReceiving +
-                ", price=" + price +
-                ", received=" + received +
-                ", paymentType=" + paymentType +
-                '}';
-    }
-
-
 }

@@ -32,7 +32,7 @@
 </head>
 <body class="text-center">
 <main class="form-sign-in">
-    <form method="post" th:action="@{/client/update-order/{id}(id=${order.idOrder})}" th:object="${order}">
+    <form method="post" th:action="@{/update-order/{id}(id=${order.idOrder})}" th:object="${order}">
         <input type="hidden" name="currentPage" th:value="${currentPage}">
         <img class="mb-4" th:src="@{/img/pngtree-vector-coffee-icon-png-image_449722.jpg}" alt="" width="72"
              height="57">
